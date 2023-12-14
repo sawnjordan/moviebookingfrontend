@@ -1,0 +1,159 @@
+/* Global CSS */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --col1: rgb(248, 68, 100);
+  --col2: #4e4f60;
+  --errorcol: rgb(255, 0, 0);
+}
+a {
+  color: var(--col1);
+  text-decoration: none;
+}
+
+.theme_btn1 {
+  background-color: var(--col1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.linkstylenone {
+  text-decoration: none;
+  color: white;
+  margin-right: 20px;
+}
+
+/* Navbar CSS */
+nav {
+  background-color: var(--col2);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+nav img {
+  height: 30px;
+  margin-right: 10px;
+}
+.searchbox {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin-left: 10px;
+  width: 500px;
+}
+
+.searchbtn {
+  margin-right: 5px;
+  font-size: 1.2rem;
+  color: var(--col2);
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.theme_icon1 {
+  font-size: 1.5rem;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+
+.dropicon {
+  font-size: 20px;
+}
+
+/* MovieCard CSS */
+.moviecard {
+  border-radius: 20px;
+  overflow: hidden;
+  /* border: 1px solid var(--col1); */
+  box-shadow: 0px 0px 10px 5px #f4f4f4;
+  width: 95%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  position: relative;
+  cursor: pointer;
+}
+
+.moviecard .movieimg {
+  object-fit: contain;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+.moviecard .movieimg .rating {
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  padding: 5px;
+}
+
+.moviecard .movieimg .rating .star {
+  color: var(--col1);
+}
+
+.moviecard .details {
+  padding: 5px 10px;
+}
+
+.moviecard .details .title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.moviecard .details .type {
+  font-size: 12px;
+  font-weight: 600;
+  color: grey;
+}
+
+/* Footer CSS */
+.footer_new {
+  background-color: var(--col2);
+  margin-top: clamp(24px, 4vw, 48px);
+}
+.footer_new .footer_new_items {
+  padding: 50px 0 40px;
+  margin: 0 clamp(28px, 5vw, 52px);
+  border-top: 1px solid #8d8d8f;
+  border-top: 1px solid var(--light-1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
