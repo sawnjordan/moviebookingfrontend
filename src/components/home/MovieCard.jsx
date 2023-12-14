@@ -7,7 +7,7 @@ const MovieCard = (data) => {
   const city = "mumbai";
 
   return (
-    <NavLink to={`/${city}/movies/${_id}`}>
+    <NavLink to={`/movie/${city}/${_id}`}>
       <div className="moviecard">
         <div
           className="movieimg"
