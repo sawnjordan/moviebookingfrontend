@@ -27,7 +27,7 @@ const Header = () => {
         {loggedIn ? (
           <button className="theme_btn1 linkstylenone">Logout</button>
         ) : (
-          <NavLink to="/register" className="theme_btn1 linkstylenone">
+          <NavLink to="/login" className="theme_btn1 linkstylenone">
             Login
           </NavLink>
         )}
