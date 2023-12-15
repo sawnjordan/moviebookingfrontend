@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import { Image } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AuthRegister = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +28,6 @@ export const AuthRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formData)
     setErrors({});
 
     const validationErrors = {};
@@ -44,6 +46,43 @@ export const AuthRegister = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
+    }
+    // console.log(formData);
+    // Axios configuration with headers
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/api/v1/auth/register",
+        formData,
+        config
+      );
+
+      // console.log(response);
+
+      toast.success("Your account has been registered.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      // If there's no specific error message in the response, re-throw the original error
+      if (error.response?.data) {
+        toast.error(error.response.data.message, { autoClose: 2000 });
+      }
+      throw error;
     }
   };
   return (

@@ -13,7 +13,7 @@ export const BuyTickets = () => {
     screen: "4D",
     date: new Date(),
     language: "Hindi",
-    type: "Action,Thriller",
+    genre: "Action,Thriller",
     theatres: [
       {
         _id: "1",

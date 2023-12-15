@@ -4,7 +4,7 @@
   padding: 0;
   line-height: normal;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: content-box;
+  /* box-sizing: content-box; */
 }
 
 :root {
@@ -426,7 +426,7 @@ input[type="text"] {
 
 /* Buy Tickets CSS */
 .buytickets .head {
-  background-color: var(--col2);
+  background-color: rgb(49, 21, 21);
   padding: 20px;
 }
 .buytickets {
