@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import { Image } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AuthLogin = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,6 +34,35 @@ export const AuthLogin = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        formData,
+        config
+      );
+
+      // console.log(response);
+
+      toast.success("Your are successfully logged in.", {
+        autoClose: 2000,
+      });
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      // If there's no specific error message in the response, re-throw the original error
+      if (error.response?.data) {
+        toast.error(error.response.data.message, { autoClose: 2000 });
+      }
+      throw error;
     }
   };
 

@@ -4,9 +4,12 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { Image } from "react-bootstrap";
+import { LocationPopup } from "./LocationPopup";
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [showLocationPopup, setShowLocationPopup] = useState(false);
+
   return (
     <nav>
       <div className="left">
@@ -20,7 +23,7 @@ const Header = () => {
         </div>
       </div>
       <div className="right">
-        <p className="dropdown">
+        <p className="dropdown" onClick={() => setShowLocationPopup(true)}>
           {"Select City"}
           <RiArrowDropDownFill className="dropicon" />
         </p>
@@ -35,6 +38,9 @@ const Header = () => {
           <BiUserCircle className="theme_icon1" />
         </NavLink>
       </div>
+      {showLocationPopup && (
+        <LocationPopup setShowLocationPopup={setShowLocationPopup} />
+      )}
     </nav>
   );
 };
