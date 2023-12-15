@@ -190,6 +190,7 @@ export const SelectSeats = () => {
       const data = response?.data;
       console.log(data.data, "booking");
       toast.success("Booking Successful", { autoClose: 2000 });
+      window.location.href = "/me";
     } catch (error) {
       console.log(error);
       // If there's no specific error message in the response, re-throw the original error

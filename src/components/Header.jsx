@@ -82,7 +82,7 @@ const Header = () => {
             Login
           </NavLink>
         )}
-        <NavLink to="/profile" className="linkstylenone">
+        <NavLink to="/me" className="linkstylenone">
           <BiUserCircle className="theme_icon1" />
         </NavLink>
       </div>

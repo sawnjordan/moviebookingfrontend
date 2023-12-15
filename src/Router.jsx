@@ -15,6 +15,7 @@ import { AdminLogin } from "./pages/cms/admin/components/AdminLogin";
 import { AdminCreateMovie } from "./pages/cms/admin/AdminCreateMovie";
 import { AdminCreateScreen } from "./pages/cms/admin/AdminCreateScreen";
 import { AdminCreateSchedule } from "./pages/cms/admin/AdminCreateSchedule";
+import { AuthProfile } from "./pages/auth/AuthProfile";
 
 export const Routing = () => {
   return (
@@ -26,6 +27,7 @@ export const Routing = () => {
             <Route index element={<LandingPage />} />
             <Route path="register" element={<AuthRegister />} />
             <Route path="login" element={<AuthLogin />} />
+            <Route path="me" element={<AuthProfile />} />
 
             <Route path="movie/:city/:movieId" element={<MovieDetails />} />
             <Route
