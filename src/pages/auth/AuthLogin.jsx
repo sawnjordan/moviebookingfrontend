@@ -55,7 +55,8 @@ export const AuthLogin = () => {
         autoClose: 2000,
       });
       console.log(response);
-      navigate("/");
+      // navigate("/");
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
       // If there's no specific error message in the response, re-throw the original error
