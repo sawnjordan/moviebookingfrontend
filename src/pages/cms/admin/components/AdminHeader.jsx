@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BiUserCircle, BiSearch } from "react-icons/bi";
 import { RiArrowDropDownFill } from "react-icons/ri";
-import logo from "../assets/logo.png";
+import logo from "../../../../assets/logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Image } from "react-bootstrap";
-import { LocationPopup } from "./LocationPopup";
 import axios from "axios";
 
-const Header = () => {
+const AdminHeader = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -17,7 +16,7 @@ const Header = () => {
     try {
       // const response = await axios.post(`http://localhost:5000/api/v1/order/new`);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/auth/me`,
+        `${import.meta.env.VITE_API_URL}/admin/me`,
         {
           withCredentials: true,
         }
@@ -69,10 +68,6 @@ const Header = () => {
         </div>
       </div>
       <div className="right">
-        <p className="dropdown" onClick={() => setShowLocationPopup(true)}>
-          {loggedInUser ? loggedInUser.address : "Select City"}
-          <RiArrowDropDownFill className="dropicon" />
-        </p>
         {loggedIn ? (
           <button className="theme_btn1 linkstylenone" onClick={handleLogout}>
             Logout
@@ -86,14 +81,8 @@ const Header = () => {
           <BiUserCircle className="theme_icon1" />
         </NavLink>
       </div>
-      {showLocationPopup && (
-        <LocationPopup
-          setShowLocationPopup={setShowLocationPopup}
-          address={loggedInUser?.address}
-        />
-      )}
     </nav>
   );
 };
 
-export default Header;
+export default AdminHeader;

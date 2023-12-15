@@ -1,22 +1,17 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../../../assets/logo.png";
 import { Image } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const AuthRegister = () => {
+export const AdminLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    address: "",
   });
-
   const [errors, setErrors] = useState({});
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -28,8 +23,6 @@ export const AuthRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setErrors({});
-
     const validationErrors = {};
     if (!formData.email) {
       validationErrors.email = "Email is required";
@@ -37,18 +30,12 @@ export const AuthRegister = () => {
     if (!formData.password) {
       validationErrors.password = "Password is required";
     }
-    if (formData.password !== formData.confirmPassword) {
-      validationErrors.confirmPassword = "Passwords do not match";
-    }
-    if (!formData.address) {
-      validationErrors.address = "Address is required";
-    }
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    // console.log(formData);
-    // Axios configuration with headers
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -57,18 +44,19 @@ export const AuthRegister = () => {
     };
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/register`,
+        `${import.meta.env.VITE_API_URL}/admin/login`,
         formData,
         config
       );
 
       // console.log(response);
 
-      toast.success("Your account has been registered.", {
+      toast.success("Your are successfully logged in.", {
         autoClose: 2000,
       });
       console.log(response);
-      navigate("/login");
+      // navigate("/");
+      window.location.href = "/admin/movie/createmovie";
     } catch (error) {
       console.log(error);
       // If there's no specific error message in the response, re-throw the original error
@@ -78,6 +66,7 @@ export const AuthRegister = () => {
       throw error;
     }
   };
+
   return (
     <div className="authout">
       <div className="authin">
@@ -93,20 +82,9 @@ export const AuthRegister = () => {
             onSubmit={handleSubmit}
           >
             <div className="forminput_cont">
-              <label>Name</label>
-              <input
-                type="text"
-                placeholder="Enter Your Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              {errors.name && <span className="formerror">{errors.name}</span>}
-            </div>
-            <div className="forminput_cont">
               <label>Email</label>
               <input
-                type="email"
+                type="text"
                 placeholder="Enter Your Email"
                 name="email"
                 value={formData.email}
@@ -129,39 +107,14 @@ export const AuthRegister = () => {
                 <span className="formerror">{errors.password}</span>
               )}
             </div>
-            <div className="forminput_cont">
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                placeholder="Confirm Your Password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-              {errors.confirmPassword && (
-                <span className="formerror">{errors.confirmPassword}</span>
-              )}
-            </div>
-
-            <div className="forminput_cont">
-              <label>Address</label>
-              <input
-                type="text"
-                placeholder="Enter Your Address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-              {errors.address && (
-                <span className="formerror">{errors.address}</span>
-              )}
-            </div>
 
             <button type="submit" className="main_button">
-              Register
+              Login
             </button>
+
             <p className="authlink">
-              Already have an account? <NavLink to="/login">Login</NavLink>
+              Don&apos;t have an account?{" "}
+              <NavLink to="/register">Register</NavLink>
             </p>
           </form>
         </div>

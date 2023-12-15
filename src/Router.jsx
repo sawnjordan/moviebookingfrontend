@@ -9,6 +9,10 @@ import { AuthRegister } from "./pages/auth/AuthRegister";
 import { MovieDetails } from "./pages/movies/MovieDetails";
 import { BuyTickets } from "./pages/movies/BuyTickets";
 import { SelectSeats } from "./pages/movies/SelectSeats";
+import { AdminLayout } from "./pages/cms/admin/AdminLayout";
+import { AdminDashboard } from "./pages/cms/admin/AdminDashboard";
+import { AdminLogin } from "./pages/cms/admin/components/AdminLogin";
+import { AdminCreateMovie } from "./pages/cms/admin/AdminCreateMovie";
 
 export const Routing = () => {
   return (
@@ -32,6 +36,12 @@ export const Routing = () => {
             />
 
             <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            {/* Admin Banner Route */}
+            <Route path="login" element={<AdminLogin />} />
+            <Route path="movie/createmovie" element={<AdminCreateMovie />} />
           </Route>
         </Routes>
       </BrowserRouter>
