@@ -9,6 +9,13 @@ export const AdminCreateMovie = () => {
     },
     withCredentials: true,
   };
+  const fileUploadConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    withCredentials: true,
+  };
+
   const [movie, setMovie] = useState({
     title: "",
     description: "",
@@ -61,18 +68,16 @@ export const AdminCreateMovie = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/image/uploadimage`,
         formData,
-        config
+        fileUploadConfig
       );
-      console.log(response, "in createmovie");
-
-      //   if (response.ok) {
-      //     const data = await response.json();
-      //     console.log("Image uploaded successfully.", data);
-      //     return data.imageUrl;
-      //   } else {
-      //     console.error("Failed to upload the image.");
-      //     return null;
-      //   }
+      const data = response?.data;
+      if (data.ok) {
+        console.log("Image uploaded successfully.", data);
+        return data.imageUrl;
+      } else {
+        console.error("Failed to upload the image.");
+        return null;
+      }
     } catch (error) {
       console.error("Error:", error);
       return null;
@@ -117,20 +122,16 @@ export const AdminCreateMovie = () => {
       }
 
       const newMovie = { ...movie, portraitImgUrl, landscapeImgUrl };
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/movie/createmovie`,
-        formData,
-        config
-      );
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/movie/createmovie`,
         newMovie,
         config
       );
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Movie creation successful.", data);
+      console.log(response);
+      const data = response?.data;
+      if (data.ok) {
+        console.log("Movie creation successful.", data.data);
 
         toast.success("Movie Created Successfully", {
           autoClose: 2000,

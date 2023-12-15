@@ -13,6 +13,8 @@ import { AdminLayout } from "./pages/cms/admin/AdminLayout";
 import { AdminDashboard } from "./pages/cms/admin/AdminDashboard";
 import { AdminLogin } from "./pages/cms/admin/components/AdminLogin";
 import { AdminCreateMovie } from "./pages/cms/admin/AdminCreateMovie";
+import { AdminCreateScreen } from "./pages/cms/admin/AdminCreateScreen";
+import { AdminCreateSchedule } from "./pages/cms/admin/AdminCreateSchedule";
 
 export const Routing = () => {
   return (
@@ -42,6 +44,11 @@ export const Routing = () => {
             {/* Admin Banner Route */}
             <Route path="login" element={<AdminLogin />} />
             <Route path="movie/createmovie" element={<AdminCreateMovie />} />
+            <Route path="movie/createscreen" element={<AdminCreateScreen />} />
+            <Route
+              path="movie/createschedule"
+              element={<AdminCreateSchedule />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

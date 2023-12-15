@@ -36,7 +36,7 @@ const AdminHeader = () => {
     try {
       // const response = await axios.post(`http://localhost:5000/api/v1/order/new`);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/auth/logout`,
+        `${import.meta.env.VITE_API_URL}/admin/logout`,
         {
           withCredentials: true,
         }
@@ -69,9 +69,29 @@ const AdminHeader = () => {
       </div>
       <div className="right">
         {loggedIn ? (
-          <button className="theme_btn1 linkstylenone" onClick={handleLogout}>
-            Logout
-          </button>
+          <>
+            <NavLink
+              to="/admin/movie/createmovie"
+              className="theme_btn1 linkstylenone"
+            >
+              Create Movie
+            </NavLink>
+            <NavLink
+              to="/admin/movie/createscreen"
+              className="theme_btn1 linkstylenone"
+            >
+              Create Screen
+            </NavLink>
+            <NavLink
+              to="/admin/movie/createschedule"
+              className="theme_btn1 linkstylenone"
+            >
+              Create Schedule
+            </NavLink>
+            <button className="theme_btn1 linkstylenone" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
         ) : (
           <NavLink to="/login" className="theme_btn1 linkstylenone">
             Login
