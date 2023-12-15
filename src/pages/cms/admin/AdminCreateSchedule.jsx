@@ -44,12 +44,16 @@ export const AdminCreateSchedule = () => {
   const [movies, setMovies] = useState([]);
 
   const getMovies = async () => {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/movie/movies`,
-      config
-    );
-    const data = response?.data;
-    setMovies(data.data);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/movie/movies`,
+        config
+      );
+      const data = response?.data;
+      setMovies(data.data);
+    } catch (error) {
+      console.log(error);
+    }
     // console.log(data.data);
   };
 
@@ -153,10 +157,16 @@ export const AdminCreateSchedule = () => {
               setSchedule({ ...schedule, screenId: screen._id });
             }}
           >
-            <p>{screen.name}</p>
-            <p>{screen.location}</p>
-            <p>{screen.city}</p>
-            <p>{screen.screenType}</p>
+            <p>
+              <b>Name:</b> {screen.name}
+            </p>
+            <p>
+              <b>City:</b>{" "}
+              {screen.city.charAt(0).toUpperCase() + screen.city.slice(1)}
+            </p>
+            <p>
+              <b>Type:</b> {screen.screenType}
+            </p>
           </div>
         ))}
       </div>
@@ -173,11 +183,26 @@ export const AdminCreateSchedule = () => {
               setSchedule({ ...schedule, movieId: movie._id });
             }}
           >
-            <p>{movie.title}</p>
-            <p>{movie.description}</p>
-            <p>{movie.rating}</p>
-            <p>{movie.genre}</p>
-            <p>{movie.duration}</p>
+            <p>
+              <b>Name: </b>
+              {movie.title}
+            </p>
+            <p>
+              <b>Desc: </b>
+              {movie.description}
+            </p>
+            <p>
+              <b>Rating: </b>
+              {movie.rating}
+            </p>
+            <p>
+              <p>Genre: </p>
+              {movie.genre.join(", ")}
+            </p>
+            <p>
+              <b>Duration: </b>
+              {movie.duration}
+            </p>
           </div>
         ))}
       </div>

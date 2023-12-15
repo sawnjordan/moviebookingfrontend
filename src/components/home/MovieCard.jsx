@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const MovieCard = (data) => {
   const { _id, title, genre, rating, portraitImgUrl } = data.Movie;
-  const city = "mumbai";
+  const city = data.user?.address.toLowerCase();
 
   return (
     <NavLink to={`/movie/${city}/${_id}`}>
@@ -23,7 +23,7 @@ const MovieCard = (data) => {
         </div>
         <div className="details">
           <p className="title">{title}</p>
-          <p className="type">{genre}</p>
+          <p className="type">{genre.join(", ")}</p>
         </div>
       </div>
     </NavLink>
