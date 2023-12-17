@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { format, parse } from "date-fns";
 
 export const SelectSeats = () => {
   const config = {
@@ -214,7 +215,7 @@ export const SelectSeats = () => {
             <h1>
               {movie.title} - {screen?.name}
             </h1>
-            <h3>{movie.genre}</h3>
+            <h3>{movie?.genre?.join(", ")}</h3>
           </div>
         </div>
       )}
@@ -233,7 +234,7 @@ export const SelectSeats = () => {
                 }}
                 key={i}
               >
-                {time.showTime}
+                {format(parse(time.showTime, "HH:mm", new Date()), "hh:mm a")}
               </h3>
             ))}
           </div>

@@ -52,7 +52,7 @@ export const BuyTickets = () => {
       setMovie(data.data);
       console.log(data.data);
     } catch (error) {
-      cconsole.log(error);
+      console.log(error);
       // If there's no specific error message in the response, re-throw the original error
       if (error.response?.data) {
         toast.error(error.response.data.message, { autoClose: 2000 });
@@ -69,9 +69,14 @@ export const BuyTickets = () => {
         config
       );
       const data = response?.data;
-      setScreens(data.data);
-      console.log(data.data);
+      const allScreens = data?.data;
+      const uniqueScreens = allScreens.filter((obj, index) => {
+        return index === allScreens.findIndex((o) => obj._id === o._id);
+      });
+      setScreens(uniqueScreens);
+      // console.log(data.data);
     } catch (error) {
+      setScreens(null);
       console.log(error);
       // If there's no specific error message in the response, re-throw the original error
       if (error.response?.data) {
@@ -108,7 +113,7 @@ export const BuyTickets = () => {
             />
           </div>
 
-          {screens && screens.length > 0 && (
+          {screens && screens.length > 0 ? (
             <div className="screens">
               {screens.map((screen, index) => {
                 let screenId = screen._id;
@@ -133,6 +138,16 @@ export const BuyTickets = () => {
                 );
               })}
             </div>
+          ) : (
+            <>
+              <div className="screens">
+                <div className="screen">
+                  <div>
+                    <h2>No shows found.</h2>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
         </div>
       )}

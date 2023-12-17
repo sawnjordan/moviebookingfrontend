@@ -510,7 +510,7 @@ input[type="text"] {
 }
 
 .selectseatpage .head h3 {
-  color: gray;
+  color: rgb(255, 255, 255);
   font-size: 13px;
   font-weight: 600;
 
